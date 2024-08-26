@@ -373,15 +373,10 @@ const Home = () => {
                 }
                 <PickupMap items={ feedItems } show={ type !== '外送' }/>
                 <NavigationBar items={ FOOD_TYPE } />
-                {
-                    location && (
-                        <>
-                            <div>latitude: { location.lat }</div>
-                            <div>longitude: { location.lng }</div>
-                        </>
-                    )
-                }
-
+                <>
+                    <div>{`latitude: ${ location ? location.lat : 'N/A' }`}</div>
+                    <div>{`longitude: ${ location ? location.lng : 'N/A' }`}</div>
+                </>
                 {
                     type === '外送' && (
                         <StyledContainer>

@@ -18,6 +18,7 @@ import { FEED } from '../../constants/feed';
 import { DELIVERY_FEE_ITEM, FOOD_PROHIBITIONS_ITEMS, PRICE_ITEMS, RANKING_ITEM } from '../../constants/filter';
 import { useGetBranchesQuery } from "../../redux/services/branchesCoreApi";
 import PickupMap from "./PickupMap";
+import useGeolocation from "../../hooks/useGeolocation";
 
 
 export const DELIVERY_TYPE = [
@@ -211,6 +212,11 @@ const Home = () => {
     const [queryPayload, setQueryPayload] = useState(defaultPayload);
     const [isIntersection, setIsIntersection] = useState(false);
     const searchRef = useRef(null);
+    const [location, getLocation] = useGeolocation();
+    
+    useEffect(() => {
+        getLocation();
+    }, []);
     
     const { data: feedItems } = useGetBranchesQuery();
     
@@ -367,6 +373,15 @@ const Home = () => {
                 }
                 <PickupMap items={ feedItems } show={ type !== '外送' }/>
                 <NavigationBar items={ FOOD_TYPE } />
+                {
+                    location && (
+                        <>
+                            <div>{ location.lat }</div>
+                            <div>{ location.lng }</div>
+                        </>
+                    )
+                }
+
                 {
                     type === '外送' && (
                         <StyledContainer>

@@ -376,8 +376,8 @@ const Home = () => {
                 {
                     location && (
                         <>
-                            <div>{ location.lat }</div>
-                            <div>{ location.lng }</div>
+                            <div>latitude: { location.lat }</div>
+                            <div>longitude: { location.lng }</div>
                         </>
                     )
                 }

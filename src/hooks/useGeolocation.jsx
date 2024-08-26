@@ -11,12 +11,12 @@ const useGeolocation = () => {
                     setUserLocation({ lat: latitude, lng: longitude })
                 },
                 (error) => {
-                    console.error('Error getting user location:', error);
+                    alert('Error getting user location:', error);
                 }
             );
         }
         else {
-            console.error('Geolocation is not supported by this browser.');
+            alert('Geolocation is not supported by this browser.');
         }
     }
     return [
